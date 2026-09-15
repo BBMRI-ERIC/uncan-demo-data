@@ -13,7 +13,7 @@ The dataset was generated through the following workflow:
 1. A real OMOP CDM export was transformed into a patient-level feature table.
 2. Direct identifiers and technical relational identifiers were excluded from the modelling table, including patient source identifiers, event primary keys, visit identifiers, provider identifiers, care-site identifiers, location identifiers, and original dates.
 3. Clinical information was represented as aggregate patient-level features, including demographics, event counts, selected OMOP concepts, treatment/procedure durations, measurement summaries, and relative timing features.
-4. Alia Santé CTGAN model was trained on this feature table and generated a synthetic patient-level dataset.
+4. A generative model was trained on this feature table and generated a synthetic patient-level dataset.
 5. The CTGAN output was post-processed to enforce valid feature types and basic consistency rules, including non-negative counts and durations, valid categorical values, bounded ages, and coherent measurement summaries.
 6. A synthetic OMOP CSV tree was reconstructed from the generated patient-level data. New synthetic identifiers and synthetic pseudo-dates were created during reconstruction; no source identifiers or original dates were reused.
 
@@ -36,20 +36,15 @@ Each CSV retains the column names and column order of its corresponding input te
 
 ## Quality assessment
 
-The synthetic dataset was evaluated through Alia Santé's quality report using statistical fidelity, structural, correlation, privacy, and anonymisation-oriented metrics.
+The synthetic dataset underwent quality assessment based on statistical,
+structural, distributional, correlation, and privacy-oriented criteria.
 
 | Metric | Score |
 |---|---:|
 | Overall quality score | 93.85 / 100 |
-| Fidelity score | 0.929 |
-| Structural score | 0.853 |
-| Distribution score | 0.977 |
-| Correlation score | 0.957 |
-| Privacy score | 0.987 |
-| Anonymisation score | 0.974 |
-| Similarity score | 1.000 |
 
-These results indicate strong preservation of the evaluated patient-level statistical properties while maintaining a high privacy-oriented score.
+The assessment indicates strong preservation of the evaluated dataset
+properties for the intended technical demonstration use case.
 
 ## Intended use
 
@@ -76,7 +71,7 @@ This dataset remains subject to the project governance framework. Users must not
 
 ## Version
 
-- Generator: Alia Santé CTGAN
+- Generator: Alia Santé generative synthetic data pipeline
 - Synthetic cohort size: 1,000 patients
 - Data model: OMOP CDM-compatible CSV export
 - Intended scope: technical demonstration and platform development
